@@ -1,0 +1,43 @@
+{
+  "name": "openclaw-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for generating social work case documents (A04/A05) with AI-powered narratives",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "start:api": "node dist/api/server.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "deploy-commands": "tsx src/bot/deploy-commands.ts"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "social-work",
+    "document-generation"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "discord.js": "^14.16.0",
+    "docx": "^9.2.0",
+    "dotenv": "^16.4.0",
+    "drizzle-orm": "^0.38.0",
+    "express": "^4.22.1",
+    "pg": "^8.13.0",
+    "pino": "^9.6.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "drizzle-kit": "^0.30.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

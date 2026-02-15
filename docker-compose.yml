@@ -1,0 +1,27 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: openclaw
+      POSTGRES_PASSWORD: openclaw
+      POSTGRES_DB: openclaw
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  api:
+    build: .
+    command: ["node", "dist/api/server.js"]
+    depends_on:
+      - postgres
+    ports:
+      - "3456:3456"
+    environment:
+      DATABASE_URL: postgresql://openclaw:openclaw@postgres:5432/openclaw
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      API_PORT: "3456"
+      LOG_LEVEL: info
+    restart: unless-stopped
+
+volumes:
+  pgdata:
